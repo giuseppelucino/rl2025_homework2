@@ -48,7 +48,7 @@ Terminal 3: It is necessary to have the essential dependencies, including those 
 sudo apt update
 sudo apt install python3-pip
 ```
- Install Python packages for plotting
+ Terminal 3: Install Python packages for plotting
 ```
 python3 -m pip install --user pandas matplotlib
 pip install "numpy<2" pandas matplotlib
@@ -58,7 +58,7 @@ Terminal 3: Generate and display plots (e.g., commanded velocities, joint positi
 source install/setup.bash
 python3 src/ros2_kdl_package/scripts/plot_results.py log_vel.csv
 ```
-Terminal 3.Generate plots specific to the null-space controller run.
+Terminal 3: Generate plots specific to the null-space controller run.
 ```
 python3 src/ros2_kdl_package/scripts/plot_results.py log_null.csv
 ```

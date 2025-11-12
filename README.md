@@ -1,23 +1,48 @@
-## \U0001f916 Project: Control your robot
+## 🤖 Project: Control your robot
 **Course: Robotics Lab**
 
 **Student: Giuseppe Lucino / P38000340**
 
 ---
 
-## \U0001f3af Project Objective
+## 🎯 Project Objective
 
 The primary goal of this homework is to **develop kinematic and vision-based controllers** for a simulated robotic manipulator. This includes implementing KDL for **joint-limit avoidance** (using null-space projection) and utilizing the `aruco_ros` package to execute a **visual "Look-at-Point" task**.
 
 ---
 
-## \u2699\ufe0f Prerequisites and Setup
+## ⚙️ Prerequisites and Setup
 
 To compile and run the project, ensure you have a standard **ROS 2** (e.g., Humble/Iron) workspace setup and the following dependencies installed.
 
+## Build
+Clone this package in the `src` folder of your ROS 2 workspace.
+```
+https://github.com/giuseppelucino/rl2025_homework2.git
+```
+Build and source the setup files
+```
+colcon build 
+source install/setup.bash
+```
+# 🚀 HOW TO LAUNCH
+Terminal 1: Launch the iiwa robot state publisher and Rviz2 for visualization.
+```
+ros2 launch iiwa_bringup iiwa.launch.py use_sim:=false rviz:=true
+```
+Terminal 2. Start the standard KDL controller (velocity_ctrl) and immediately execute the trajectory.
+
+```
+source install/setup.bash
+ros2 launch ros2_kdl_package ros2_kdl_node.launch.py ctrl:=velocity_ctrl auto_start:=true
+```
+Terminal 2 .Otherwise ,start the controller with joint-limit avoidance enabled via null-space projection
+```
+ros2 launch ros2_kdl_package ros2_kdl_node.launch.py ctrl:=velocity_ctrl_null auto_start:=true
+```
 ### Dependencies Installation
 
-It is necessary to have the essential dependencies, including those for plotting results:
+Terminal 3. It is necessary to have the essential dependencies, including those for plotting results:
 
 ```bash
 sudo apt update
@@ -28,42 +53,16 @@ sudo apt install python3-pip
 python3 -m pip install --user pandas matplotlib
 pip install "numpy<2" pandas matplotlib
 ```
-## Build
-Clone this package in the `src` folder of your ROS 2 workspace.
-```
-https://github.com/giuseppelucino/rl2025_homework_2.git
-
-```
-Build and source the setup files
-```
-colcon build 
-source install/setup.bash
-```
-# \U0001f680 HOW TO LAUNCH
-Launch the iiwa robot state publisher and Rviz2 for visualization.
-```
-ros2 launch iiwa_bringup iiwa.launch.py use_sim:=false rviz:=true
-```
-On the terminal 2. Start the standard KDL controller (velocity_ctrl) and immediately execute the trajectory.
-
-```
-source install/setup.bash
-ros2 launch ros2_kdl_package ros2_kdl_node.launch.py ctrl:=velocity_ctrl auto_start:=true
-```
-Terminal 2. Generate and display plots (e.g., commanded velocities, joint positions) from the velocity_ctrl log file.
+Terminal 3. Generate and display plots (e.g., commanded velocities, joint positions) from the velocity_ctrl log file.
 ```
 source install/setup.bash
 python3 src/ros2_kdl_package/scripts/plot_results.py log_vel.csv
-```
-Terminal 2 .Start the controller with joint-limit avoidance enabled via null-space projection
-```
-ros2 launch ros2_kdl_package ros2_kdl_node.launch.py ctrl:=velocity_ctrl_null auto_start:=true
 ```
 Terminal 3.Generate plots specific to the null-space controller run.
 ```
 python3 src/ros2_kdl_package/scripts/plot_results.py log_null.csv
 ```
-# \U0001f579\ufe0f INTERACTION AND CONTROL----ACTION-CLIENT----
+# 🕹️ INTERACTION AND CONTROL----ACTION-CLIENT----
 Launch the Action Server and wait for a goal (trajectory execution is initially suspended).Terminal 2 
 ```
 ros2 launch ros2_kdl_package ros2_kdl_node.launch.py auto_start:=false

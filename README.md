@@ -40,6 +40,7 @@ ros2 launch ros2_kdl_package ros2_kdl_node.launch.py ctrl:=velocity_ctrl auto_st
 ```
 Terminal 2. Otherwise ,start the controller with joint-limit avoidance enabled via null-space projection
 ```
+source install/setup.bash
 ros2 launch ros2_kdl_package ros2_kdl_node.launch.py ctrl:=velocity_ctrl_null auto_start:=true
 ```
 ### Dependencies Installation
@@ -58,18 +59,19 @@ pip install "numpy<2" pandas matplotlib
 Terminal 3. Generate and display plots (e.g., commanded velocities, joint positions) from the velocity_ctrl log file.
 ```
 source install/setup.bash
-python3 src/rl25_homework_2/ros2_kdl_package/scripts/plot_results.py log_vel.csv
+python3 src/rl2025_homework2/ros2_kdl_package/scripts/plot_results.py log_vel.csv
 ```
 Terminal 3. Generate plots specific to the null-space controller run.
 ```
-python3 src/rl25_homework_2/ros2_kdl_package/scripts/plot_results.py log_null.csv
+source install/setup.bash
+python3 src/rl2025_homework2/ros2_kdl_package/scripts/plot_results.py log_null.csv
 ```
 # 🕹️ INTERACTION AND CONTROL----ACTION-CLIENT----
 Terminal 1. Launch the iiwa robot state publisher and Rviz2 for visualization.
 ```
 ros2 launch iiwa_bringup iiwa.launch.py use_sim:=false rviz:=true
 ```
-Terminal 2. Launch the Action Server and wait for a goal (trajectory execution is initially suspended).Terminal 2 
+Terminal 2. Launch the Action Server and wait for a goal (trajectory execution is initially suspended).
 ```
 ros2 launch ros2_kdl_package ros2_kdl_node.launch.py auto_start:=false
 
@@ -79,6 +81,13 @@ Terminal 3. Run the Action Client to send the trajectory goal and monitor feedba
 ros2 run ros2_kdl_package linear_traj_client
 ```
 ## LAUNCH GAZEBO. Vision-based control
+Terminal 1. Launch the full ROS 2 simulation environment for the KUKA LBR iiwa robot in Gazebo Sim
+```
+cd ~/ros2_ws/
+```
+```
+export GZ_SIM_RESOURCE_PATH=$GZ_SIM_RESOURCE_PATH:/home/user/ros2_ws/src/rl2025_homework2/ros2_iiwa/iiwa_description/gazebo/models
+```
 Terminal 1. This starts the robot in the Gazebo world containing the ArUco marker.
 ```
 ros2 launch iiwa_bringup iiwa.launch.py use_sim:=true rviz:=false

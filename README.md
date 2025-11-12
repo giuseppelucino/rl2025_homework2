@@ -86,7 +86,7 @@ Terminal 3: to activate the vision_ctrl. The robot will attempt to align its cam
 source install/setup.bash
 ros2 launch ros2_kdl_package ros2_kdl_node.launch.py ctrl:=vision_ctrl auto_start:=true
 ```
-Call the Gazebo service to move the ArUco marker; the robot should immediately react to maintain visual alignment.
+terminal 4: Call the Gazebo service to move the ArUco marker; the robot should immediately react to maintain visual alignment.
 
 ```
 source install/setup.bash

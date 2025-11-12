@@ -30,19 +30,19 @@ Terminal 1: Launch the iiwa robot state publisher and Rviz2 for visualization.
 ```
 ros2 launch iiwa_bringup iiwa.launch.py use_sim:=false rviz:=true
 ```
-Terminal 2. Start the standard KDL controller (velocity_ctrl) and immediately execute the trajectory.
+Terminal 2: Start the standard KDL controller (velocity_ctrl) and immediately execute the trajectory.
 
 ```
 source install/setup.bash
 ros2 launch ros2_kdl_package ros2_kdl_node.launch.py ctrl:=velocity_ctrl auto_start:=true
 ```
-Terminal 2 .Otherwise ,start the controller with joint-limit avoidance enabled via null-space projection
+Terminal 2: Otherwise ,start the controller with joint-limit avoidance enabled via null-space projection
 ```
 ros2 launch ros2_kdl_package ros2_kdl_node.launch.py ctrl:=velocity_ctrl_null auto_start:=true
 ```
 ### Dependencies Installation
 
-Terminal 3. It is necessary to have the essential dependencies, including those for plotting results:
+Terminal 3: It is necessary to have the essential dependencies, including those for plotting results:
 
 ```bash
 sudo apt update
@@ -53,7 +53,7 @@ sudo apt install python3-pip
 python3 -m pip install --user pandas matplotlib
 pip install "numpy<2" pandas matplotlib
 ```
-Terminal 3. Generate and display plots (e.g., commanded velocities, joint positions) from the velocity_ctrl log file.
+Terminal 3: Generate and display plots (e.g., commanded velocities, joint positions) from the velocity_ctrl log file.
 ```
 source install/setup.bash
 python3 src/ros2_kdl_package/scripts/plot_results.py log_vel.csv
@@ -73,15 +73,15 @@ Run the Action Client to send the trajectory goal and monitor feedback.Open anot
 ros2 run ros2_kdl_package linear_traj_client
 ```
 ## LAUNCH GAZEBO. Vision-based control
-Open Terminal 1. This starts the robot in the Gazebo world containing the ArUco marker.
+Terminal 1: This starts the robot in the Gazebo world containing the ArUco marker.
 ```
 ros2 launch iiwa_bringup iiwa.launch.py use_sim:=true rviz:=false
 ```
-Open Terminal 2 to verify that the camera is active and detecting the marker.
+Terminal 2: to verify that the camera is active and detecting the marker.
 ```
 ros2 run rqt_image_view rqt_image_view 
 ```
-Open Terminal 3 to activate the vision_ctrl. The robot will attempt to align its camera with the marker.
+Terminal 3: to activate the vision_ctrl. The robot will attempt to align its camera with the marker.
 ```
 source install/setup.bash
 ros2 launch ros2_kdl_package ros2_kdl_node.launch.py ctrl:=vision_ctrl auto_start:=true

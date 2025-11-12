@@ -1,7 +1,7 @@
 ## \U0001f916 Project: Control your robot
 **Course: Robotics Lab**
 
-**Student: Leonardo Riccardi / P38000358**
+**Student: Giuseppe Lucino / P38000340**
 
 ---
 
@@ -31,7 +31,7 @@ pip install "numpy<2" pandas matplotlib
 ## Build
 Clone this package in the `src` folder of your ROS 2 workspace.
 ```
-https://github.com/leonardoricc2002/Homework_2.git
+https://github.com/giuseppelucino/rl2025_homework_2.git
 
 ```
 Build and source the setup files
